@@ -1,0 +1,179 @@
+package sgw.kandidat.ui;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import sgw.kandidat.R;
+import sgw.kandidat.dagger.base.BaseActivity;
+import sgw.kandidat.dagger.components.ActivityComponent;
+import sgw.kandidat.dagger.modules.DataBaseModule;
+import sgw.kandidat.dagger.modules.SharedPreferenceModule;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener{
+
+    EditText et_name, et_surname, et_fathername, et_age, et_stazh, et_kilk_inm, et_nayavn_vo, et_nayavn_dz, et_email;
+    Button next, btn_insert, btn_result;
+    CheckBox cb_a,cb_b,cb_c,cb_d;
+    RadioButton rb_komanda_yes, rb_komanda_no, rb_director_yes, rb_director_no;
+    RelativeLayout rl_next, rl_first, rl_results;
+    String name, surname, fathername,  email;
+    String age, stazh, kilk_inm, nayavn_vo, nayavn_dz;
+    int nayavn_vp, nayavn_dk, nayavn_dv;
+    TextView textView,textView1,textView2,textView3;
+    String stringName;
+
+    @Inject
+    DataBaseModule dataBaseModule;
+    @Named(SharedPreferenceModule.AUTH_PREF)
+    @Inject
+    SharedPreferences sharedPreferencesName;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        nayavn_vp=0;
+        //TextView
+        textView=(TextView)findViewById(R.id.textView2);
+        textView1=(TextView)findViewById(R.id.textView3);
+        textView2=(TextView)findViewById(R.id.textView5);
+        textView3=(TextView)findViewById(R.id.vitayu);
+        //EditText
+        et_name=(EditText) findViewById(R.id.name);
+        et_surname=(EditText) findViewById(R.id.surname);
+        et_fathername=(EditText) findViewById(R.id.fathername);
+        et_age=(EditText) findViewById(R.id.age);
+        et_stazh=(EditText) findViewById(R.id.stazh);
+        et_kilk_inm=(EditText) findViewById(R.id.kilk_inm);
+        et_nayavn_vo=(EditText) findViewById(R.id.nayavn_vo);
+        et_nayavn_dz=(EditText) findViewById(R.id.nayavn_dz);
+        et_email=(EditText) findViewById(R.id.email);
+        //Buttons
+        next = (Button) findViewById(R.id.next);
+        btn_insert=(Button) findViewById(R.id.btn_insert);
+        btn_result=(Button) findViewById(R.id.btn_go_to_results);
+        next.setOnClickListener(this);
+        btn_insert.setOnClickListener(this);
+        btn_result.setOnClickListener(this);
+        //Check_box
+        cb_a = (CheckBox) findViewById(R.id.cb_a);
+        cb_b = (CheckBox) findViewById(R.id.cb_b);
+        cb_c = (CheckBox) findViewById(R.id.cb_c);
+        cb_d = (CheckBox) findViewById(R.id.cb_d);
+        //Radiobutton
+        rb_komanda_yes = (RadioButton) findViewById(R.id.rb_komanda_yes);
+        rb_komanda_no = (RadioButton) findViewById(R.id.rb_komanda_no);
+        rb_director_yes = (RadioButton) findViewById(R.id.rb_director_yes);
+        rb_director_no = (RadioButton) findViewById(R.id.rb_director_no);
+        //RelativeLayout
+        rl_first=(RelativeLayout) findViewById(R.id.rl_first);
+        rl_next=(RelativeLayout) findViewById(R.id.rl_next);
+        rl_results = (RelativeLayout) findViewById(R.id.rl_result);
+
+
+    }
+
+    @Override
+    public void inject(ActivityComponent injector) {
+        injector.inject(this);
+    }
+    private void letsRead(){
+        name = et_name.getText().toString();
+        surname = et_surname.getText().toString();
+        fathername = et_fathername.getText().toString();
+        email = et_email.getText().toString();
+        age = et_age.getText().toString();
+        stazh = et_stazh.getText().toString();
+        kilk_inm=et_kilk_inm.getText().toString();
+        nayavn_vo=et_nayavn_vo.getText().toString();
+        nayavn_dz=et_nayavn_dz.getText().toString();
+    }
+    private void readNext(){
+        if(cb_a.isChecked()){
+            nayavn_vp++;
+        }
+        if(cb_b.isChecked()){
+            nayavn_vp++;
+        }
+        if(cb_c.isChecked()){
+            nayavn_vp++;
+        }
+        if(cb_d.isChecked()){
+            nayavn_vp++;
+        }
+        if (rb_komanda_yes.isChecked()){
+            nayavn_dk=1;
+        }
+        else
+            nayavn_dk=0;
+        if (rb_director_yes.isChecked()){
+            nayavn_dv=1;
+        }
+        else
+            nayavn_dv=0;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.next:
+                rl_first.setVisibility(View.INVISIBLE);
+
+                textView.setVisibility(View.VISIBLE);
+                textView1.setVisibility(View.VISIBLE);
+                textView2.setVisibility(View.VISIBLE);
+                btn_insert.setVisibility(View.VISIBLE);
+                cb_a.setVisibility(View.VISIBLE);
+                cb_b. setVisibility(View.VISIBLE);
+                cb_c.setVisibility(View.VISIBLE);
+                cb_d.setVisibility(View.VISIBLE);
+                rb_komanda_yes.setVisibility(View.VISIBLE);
+                rb_komanda_no.setVisibility(View.VISIBLE);
+                rb_director_yes.setVisibility(View.VISIBLE);
+                rb_director_no.setVisibility(View.VISIBLE);
+
+                letsRead();
+                break;
+            case R.id.btn_insert:
+                rl_next.setVisibility(View.INVISIBLE);
+                textView3.setVisibility(View.VISIBLE);
+                btn_result.setVisibility(View.VISIBLE);
+
+                readNext();
+
+                 stringName = name + " " + surname + " " + fathername;
+
+                dataBaseModule.saveToDB(this,
+                        stringName,
+                        Integer.parseInt(age),
+                        Integer.parseInt(stazh),
+                        Integer.parseInt(nayavn_vo),
+                        nayavn_vp,
+                        Integer.parseInt(nayavn_dz),
+                        nayavn_dk,
+                        nayavn_dv,
+                        Integer.parseInt(kilk_inm),
+                        email);
+                break;
+            case R.id.btn_go_to_results:
+                sharedPreferencesName.edit().putString("auth",stringName).apply();
+                Intent intent = new Intent(this,Results.class);
+                startActivity(intent);
+                break;
+            default:break;
+        }
+
+    }
+}
