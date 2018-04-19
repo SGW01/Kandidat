@@ -19,6 +19,9 @@
         <activity android:name=".ui.Results">
 
         </activity>
+        <activity android:name=".ui.CurriculumVitaeActivity">
+
+        </activity>
     </application>
 
 </manifest>
