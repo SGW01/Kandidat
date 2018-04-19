@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 stringName = name + " " + surname + " " + fathername;
 
-                dataBaseModule.saveToDB(this,
+            /*    dataBaseModule.saveToDB(this,
                         stringName,
                         Integer.parseInt(age),
                         Integer.parseInt(stazh),
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         nayavn_dk,
                         nayavn_dv,
                         Integer.parseInt(kilk_inm),
-                        email);
+                        email);*/
                 break;
             case R.id.btn_go_to_results:
                 sharedPreferencesName.edit().putString("auth", stringName).apply();

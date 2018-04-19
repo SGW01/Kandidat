@@ -17,33 +17,24 @@ public class DataBaseModule {
     }
 
 
-    public boolean saveToDB(Context context, String name, int age, int stazh,
-                            int nayavn_vo, int nayavn_vp, int nayavn_dz, int nayavn_dk,
-                            int nayavn_dv, int kilk_inm, String email) {
+    public boolean saveToDB(Context context, String name, String surname, int age, String email,
+                            int track, int foreign, int education,
+                            int command, int leadership, int driver) {
         SQLiteDatabase database = new DBSQLiteHelper(context).getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(TablesPresenterClass.Kandidat.COLUMN_NAME, name);
+        values.put(TablesPresenterClass.Kandidat.COLUMN_SURNAME, surname);
         values.put(TablesPresenterClass.Kandidat.COLUMN_AGE, age);
         values.put(TablesPresenterClass.Kandidat.COLUMN_EMAIL, email);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_STAZH, stazh);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_NAYAVNVO, nayavn_vo);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_NAYAVNVP, nayavn_vp);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDZ, nayavn_dz);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDK, nayavn_dk);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDV, nayavn_dv);
-        values.put(TablesPresenterClass.Kandidat.COLUMN_KILKINM, kilk_inm);
 
-        Log.d(TAG, "name=" + name);
-        Log.d(TAG, "age = " + String.valueOf(age));
-        Log.d(TAG, "email = " + email);
-        Log.d(TAG, "stazh = " + String.valueOf(stazh));
-        Log.d(TAG, "nayavn_vo = " + String.valueOf(nayavn_vo));
-        Log.d(TAG, "nayavn_vp = " + String.valueOf(nayavn_vp));
-        Log.d(TAG, "nayavn_dz = " + String.valueOf(nayavn_dz));
-        Log.d(TAG, "nayavn_dk = " + String.valueOf(nayavn_dk));
-        Log.d(TAG, "nayavn_dv = " + String.valueOf(nayavn_dv));
-        Log.d(TAG, "kilk_inm = " + String.valueOf(kilk_inm));
+        values.put(TablesPresenterClass.Kandidat.COLUMN_TRACK, track);
+        values.put(TablesPresenterClass.Kandidat.COLUMN_FOREIGN, foreign);
+        values.put(TablesPresenterClass.Kandidat.COLUMN_EDUCATION, education);
 
+        values.put(TablesPresenterClass.Kandidat.COLUMN_COMMAND, command);
+        values.put(TablesPresenterClass.Kandidat.COLUMN_LEADERSHIP, leadership);
+        values.put(TablesPresenterClass.Kandidat.COLUMN_DRIVER, driver);
 
         long newRowId = database.insert(TablesPresenterClass.Kandidat.TABLE_NAME, null, values);
         Log.d(TAG, "The new row Id is " + newRowId);
@@ -53,31 +44,29 @@ public class DataBaseModule {
 
 
     public int[] readFromDB(Context context, String name) {
-        int[] data = new int[8];
+        int[] data = new int[7];
 
         SQLiteDatabase database = new DBSQLiteHelper(context).getReadableDatabase();
         Cursor cursor;
         cursor = database.rawQuery("select " +
                 TablesPresenterClass.Kandidat.COLUMN_AGE + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_STAZH + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_NAYAVNVO + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_NAYAVNVP + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_NAYAVNDZ + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_NAYAVNDK + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_NAYAVNDV + ", " +
-                TablesPresenterClass.Kandidat.COLUMN_KILKINM + " " +
+                TablesPresenterClass.Kandidat.COLUMN_TRACK + ", " +
+                TablesPresenterClass.Kandidat.COLUMN_FOREIGN + ", " +
+                TablesPresenterClass.Kandidat.COLUMN_EDUCATION + ", " +
+                TablesPresenterClass.Kandidat.COLUMN_COMMAND + ", " +
+                TablesPresenterClass.Kandidat.COLUMN_LEADERSHIP + ", " +
+                TablesPresenterClass.Kandidat.COLUMN_DRIVER + " " +
                 "from " + TablesPresenterClass.Kandidat.TABLE_NAME + " WHERE " +
                 TablesPresenterClass.Kandidat.COLUMN_NAME + " = ? ", new String[]{name});
         cursor.moveToFirst();
         Log.d(TAG, String.valueOf(cursor.getCount()));
         data[0] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_AGE));
-        data[1] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_STAZH));
-        data[2] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_NAYAVNVO));
-        data[3] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_NAYAVNVP));
-        data[4] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDZ));
-        data[5] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDK));
-        data[6] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_NAYAVNDV));
-        data[7] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_KILKINM));
+        data[1] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_TRACK));
+        data[2] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_FOREIGN));
+        data[3] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_EDUCATION));
+        data[4] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_COMMAND));
+        data[5] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_LEADERSHIP));
+        data[6] = cursor.getInt(cursor.getColumnIndexOrThrow(TablesPresenterClass.Kandidat.COLUMN_DRIVER));
         cursor.close();
         database.close();
         return data;

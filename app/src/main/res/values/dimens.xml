@@ -32,7 +32,7 @@
 
     <dimen name="ageMarginLeft">8dp</dimen>
     <dimen name="ageMarginRight">8dp</dimen>
-    <dimen name="ageMarginTop">320dp</dimen>
+    <dimen name="ageMarginTop">260dp</dimen>
 
     <dimen name="trackRecordMarginLeft">8dp</dimen>
     <dimen name="trackRecordMarginTop">68dp</dimen>
@@ -53,7 +53,7 @@
     <dimen name="textViewDegreeMarginTop">248dp</dimen>
     <dimen name="textViewDegreeTextSize">20sp</dimen>
 
-    <dimen name="emailMarginTop">388dp</dimen>
+    <dimen name="emailMarginTop">344dp</dimen>
     <dimen name="emailMarginRight">8dp</dimen>
     <dimen name="emailMarginLeft">8dp</dimen>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_info_about_candidate"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,23 +33,7 @@
         android:layout_marginTop="@dimen/surnameMarginTop"
         android:hint="@string/surnameText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/fathername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/surname"
-        android:layout_marginEnd="@dimen/fathernameMarginRight"
-        android:layout_marginLeft="@dimen/fathernameMarginLeft"
-        android:layout_marginRight="@dimen/fathernameMarginRight"
-        android:layout_marginStart="@dimen/fathernameMarginLeft"
-        android:layout_marginTop="@dimen/fathernameMarginTop"
-        android:hint="@string/fathernameText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +41,6 @@
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fathername"
         android:layout_marginEnd="@dimen/ageMarginRight"
         android:layout_marginLeft="@dimen/ageMarginLeft"
         android:layout_marginRight="@dimen/ageMarginRight"
@@ -65,7 +49,7 @@
         android:hint="@string/ageText"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,5 +86,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017" />
+
+    <Button
+        android:id="@+id/buttonGoToProfInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="444dp"
+        android:text="@string/buttonGoToProfInfoText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

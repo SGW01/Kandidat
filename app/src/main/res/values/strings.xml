@@ -25,5 +25,8 @@
     <string name="leadershipNoText">No</string>
     <string name="driverYesText">Yes</string>
     <string name="driverNoText">No</string>
+    <string name="buttonGoToProfInfoText">Next</string>
+    <string name="buttonGoToWorkExpText">Next</string>
+    <string name="buttonGoToResultText">Result</string>
 
 </resources>
